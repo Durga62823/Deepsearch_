@@ -1,0 +1,13 @@
+/* src/App.css */
+/* Any custom styles specific to your application that are not directly Tailwind utilities */
+
+body {
+  font-family: 'Inter', sans-serif; /* Set Inter font as default */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure the root element takes full height */
+#root {
+  height: 100%;
+}
