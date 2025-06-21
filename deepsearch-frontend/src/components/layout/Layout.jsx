@@ -19,6 +19,7 @@ const Layout = () => {
         © {new Date().getFullYear()} DeepSearch. All rights reserved.
       </footer>
     </div>
+    
   );
 };
 
