@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
 "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
+    "start": "node server.js",
+    "build": "echo 'No build needed for Node.js backend'",
   "vercel-build": "npm run build"
 },
   "keywords": [],

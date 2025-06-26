@@ -1,0 +1,4 @@
+# deepsearch-backend/.vercelignore
+node_modules/
+.env
+*.log
