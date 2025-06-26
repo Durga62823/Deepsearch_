@@ -7,19 +7,12 @@ const mongoose = require('mongoose'); // Mongoose is now imported here
 // Load environment variables
 dotenv.config();
 
-// Create Express app
 const app = express();
 
-// Middleware
-// Using cors() without options enables CORS for all origins, methods, and headers.
-// This is suitable for development but consider more restrictive options for production.
 app.use(cors());
-app.use(express.json()); // Body parser for JSON requests
-app.use(express.urlencoded({ extended: true })); // Body parser for URL-encoded form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// --- Database Connection ---
-// Connect to MongoDB directly in server.js
-// Keeping MONGODB_URI as per your .env file
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/deepsearch', {
   // Removed useNewUrlParser and useUnifiedTopology as they are deprecated in Mongoose 6+
   // Removed useCreateIndex and useFindAndModify as they are deprecated in Mongoose 6+
