@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "start": "node server.js",
     "build": "echo 'No build needed for Node.js backend'",
-  "vercel-build": "npm run build"
-},
+    "vercel-build": "npm run build"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

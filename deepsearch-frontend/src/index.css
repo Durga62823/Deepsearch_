@@ -1,9 +1,13 @@
+/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
 @import "tw-animate-css";
-@custom-variant dark (&:is(.dark *));
-/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Basic reset and ensure html/body take full height */
+/* 
+@custom-variant dark (&:is(.dark *));
+
 html, body {
   height: 100%;
   margin: 0;
@@ -117,8 +121,7 @@ html, body {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@tailwind base;
-@tailwind components;
+
 @tailwind utilities;
 
 @layer base {
@@ -176,4 +179,4 @@ html, body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
+} */
