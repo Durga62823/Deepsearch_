@@ -117,7 +117,6 @@ const extractEntitiesWithGemini = async (text) => {
         console.error("GEMINI_API_KEY is not set in environment variables. Entity extraction skipped.");
 
         return [];
-
     }
 
 

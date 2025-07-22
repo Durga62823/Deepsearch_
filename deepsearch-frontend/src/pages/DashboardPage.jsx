@@ -1,9 +1,9 @@
 // src/pages/DashboardPage.jsx
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import { documentAPI } from '../services/api';
-import DocumentCard from '../components/dashboard/DocumentCard'; // Make sure this path is correct
-import UploadModal from '../components/dashboard/UploadModal'; // Make sure this path is correct
+import DocumentCard from '../components/dashboard/DocumentCard'; 
+import UploadModal from '../components/dashboard/UploadModal';
 import { AuthContext } from '../context/AuthContext'; // Use AuthContext
 import { Button } from "@/components/ui/button"; // From shadcn/ui
 import { Upload } from "lucide-react"; // From lucide-react for icons
@@ -47,9 +47,9 @@ const DashboardPage = () => {
     } else {
       console.log('DashboardPage: User not authenticated, skipping document fetch.');
       setLoading(false);
-      setDocuments([]); // Clear documents if user logs out
+      setDocuments([]); 
     }
-  }, [user]); // Re-fetch documents when user state changes (e.g., after login/logout)
+  }, [user]);
 
   const handleUploadSuccess = (newDocument) => {
     console.log('DashboardPage: handleUploadSuccess called with new document:', newDocument);
@@ -66,28 +66,26 @@ const DashboardPage = () => {
     }
 
     try {
-      setDeletingId(documentId); // Set the ID of the document being deleted to show spinner
-      // CORRECTED: Changed documentAPI.deleteDocument to documentAPI.delete
-      await documentAPI.delete(documentId); // Call the correct delete API method
-      setDocuments((prevDocs) => prevDocs.filter((doc) => doc._id !== documentId)); // Filter out the deleted doc from state
-      toast.success('Document deleted successfully!'); // Display success toast
+      setDeletingId(documentId);
+      await documentAPI.delete(documentId);
+      setDocuments((prevDocs) => prevDocs.filter((doc) => doc._id !== documentId));
     } catch (err) {
       console.error('Error deleting document:', err.response ? err.response.data : err.message);
       const errorMessage = err.response?.data?.message || 'Failed to delete document. Please try again.';
       setError(errorMessage);
-      toast.error(errorMessage); // Display error toast
+      toast.error(errorMessage);
     } finally {
-      setDeletingId(null); // Clear the deleting ID
+      setDeletingId(null); 
     }
   };
 
   const handleDocumentClick = (documentId) => {
-    navigate(`/documents/${documentId}`); // Navigate to the document view page
+    navigate(`/documents/${documentId}`); 
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ToastContainer for displaying notifications */}
+   
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       
       <div className="container mx-auto px-6 py-8 md:px-20 space-y-8">

@@ -1,20 +1,19 @@
 // src/context/AuthContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 
-// Create the AuthContext
+
 export const AuthContext = createContext();
 
-// Create the AuthProvider component
+
 export const AuthProvider = ({ children }) => {
-  // State to hold the current authenticated user's data
+
   const [user, setUser] = useState(null);
-  // State to indicate if the authentication check (e.g., from localStorage) is complete
+
   const [loading, setLoading] = useState(true);
 
-  // Log initial state
   console.log('AuthContext: Initializing, user:', user, 'loading:', loading);
 
-  // useEffect to check for existing token and user data in localStorage on component mount
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user'); // User data could include email, ID, name etc.
@@ -45,11 +44,11 @@ export const AuthProvider = ({ children }) => {
       }
     } else {
       console.log('AuthContext useEffect: No token or user data found in localStorage.');
-      setUser(null); // Explicitly set user to null if no data
+      setUser(null);
     }
-    setLoading(false); // Set loading to false once initial check is done
+    setLoading(false);
     console.log('AuthContext useEffect: Initial check complete, loading set to false.');
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []); 
 
   // Log state whenever it changes (for debugging purposes)
   useEffect(() => {
@@ -57,8 +56,6 @@ export const AuthProvider = ({ children }) => {
   }, [user, loading]);
 
 
-  // Function to handle user login
-  // Stores token and user data in localStorage and updates state
   const login = (token, userData) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData)); // Store user data as a string
@@ -66,8 +63,6 @@ export const AuthProvider = ({ children }) => {
     console.log('AuthContext: User logged in:', userData);
   };
 
-  // Function to handle user logout
-  // Removes token and user data from localStorage and clears state
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -75,8 +70,7 @@ export const AuthProvider = ({ children }) => {
     console.log('AuthContext: User logged out.');
   };
 
-  // The AuthContext.Provider makes the 'user', 'login', 'logout', and 'loading' values
-  // available to any component that consumes this context.
+
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}

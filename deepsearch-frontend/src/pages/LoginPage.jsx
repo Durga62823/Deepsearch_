@@ -47,7 +47,9 @@ export default function LoginPage() {
             <div className="bg-primary text-primary-foreground flex h-10 w-10 items-center justify-center rounded-md">
               <GalleryVerticalEnd className="h-6 w-6" />
             </div>
-            DeepSearch
+            <span>
+              Deep<span className="text-red-600">Search</span>
+            </span>
           </a>
         </div>
         <div className="flex flex-1 items-center justify-center">

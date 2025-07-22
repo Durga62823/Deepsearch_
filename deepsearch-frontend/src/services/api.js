@@ -1,21 +1,16 @@
 // src/services/api.js
 import axios from 'axios';
 
-// Define the base URL for your backend API.
-// Use process.env.VITE_BACKEND_URL for production builds (Vite env vars start with VITE_).
-// For local development, it defaults to http://localhost:5000/api
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-// Create a custom Axios instance with the base URL
 const api = axios.create({
   baseURL: API_URL,
-  // Set default headers for most requests. For file uploads, it will be overridden.
+
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add an Axios request interceptor to automatically attach the auth token to every outgoing request
 api.interceptors.request.use(config => {
   // Retrieve the token from localStorage
   const token = localStorage.getItem('token');
@@ -36,17 +31,11 @@ api.interceptors.response.use(
     // If the error response has a status of 401 (Unauthorized)
     if (error.response && error.response.status === 401) {
       console.warn('API Error: 401 Unauthorized. Session might be expired or invalid token.');
-      // It's a 401, likely due to an invalid or expired token.
-      // Clear the token and user data from localStorage to log the user out
       localStorage.removeItem('token');
       localStorage.removeItem('user'); // Also clear user data if stored separately
 
-      // Redirect to the login page
-      // Using window.location.href forces a full page reload, which ensures
-      // all React components re-initialize and authentication contexts are reset.
-      // This is a robust way to handle session expiration.
       if (window.location.pathname !== '/login') { // Prevent infinite redirects if already on login page
-        // Use a simple alert or a more sophisticated custom modal for user notification
+
         alert('Your session has expired. Please log in again.');
         window.location.href = '/login';
       }
